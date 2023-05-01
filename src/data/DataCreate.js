@@ -22,7 +22,7 @@ function DataCreate() {
     //Controlling POST from frontend
     const submit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:5000/saver', {
+        fetch('https://password-protector.cyclic.app/saver', {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json',

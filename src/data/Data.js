@@ -15,7 +15,7 @@ function Data() {
 
   // useEffect hook for fetching data from the API 
   useEffect(() => {
-    fetch('http://localhost:5000/saver', {
+    fetch('https://password-protector.cyclic.app/saver', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function Data() {
 
   // Logic for deleting a book's entry by targeting specific ID
   const del = (id) => {
-    fetch(`http://localhost:5000/saver/${id}`, {
+    fetch(`https://password-protector.cyclic.app/saver/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function Data() {
 
   useEffect(() => {
     if (searchTerm !== '') {
-      let url = 'http://localhost:5000/searcherapi/search?q=' + searchTerm;
+      let url = 'https://password-protector.cyclic.app/searcherapi/search?q=' + searchTerm;
       fetch(url, {
         method: "GET",
         headers: {

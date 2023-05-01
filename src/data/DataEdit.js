@@ -20,7 +20,7 @@ function DataEdit() {
 
     //useEffect hook for fetching data and dynamically setting values
     useEffect(() => {
-        fetch(`http://localhost:5000/saver/${id}`, {
+        fetch(`https://password-protector.cyclic.app/saver/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function DataEdit() {
     //Its logic for fetching already filled data and Patching or updating data
     const submit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:5000/saver/${id}`, {
+        fetch(`https://password-protector.cyclic.app/saver/${id}`, {
             method: 'PATCH',
             headers: { "Content-type": "application/json",
             'Authorization': `Bearer ${token}`},
