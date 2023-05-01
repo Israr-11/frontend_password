@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+ul {
+  list-style: none;
+}
+.nav-bar {
+  background-color: #e2a261;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: relative;
+}
+.nav-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.top-nav li {
+  display: inline-block;
+  padding: 15px 15px 15px 0px;
+}
+
+.title {
+  margin: 0 auto;
+  font-size: 30px;
+  font-weight: bold;
+}
+.wrraper {
+  display: flex;
+}
+.side-menu {
+  margin-top: 20px;
+}
+.side-menu li {
+  border-bottom: dashed 1px white;
+}
+.side-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+}
+.right-content {
+  padding: 10px;
+  flex: 9;
+}
+table {
+  width: 90%;
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-top: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  color: white;
+  font-weight: bold;
+  margin: 0 auto;
+}
+table thead th {
+  vertical-align: bottom;
+  color: red;
+  font-weight: bolder;
+}
+
+td,
+th {
+  padding: 0.3rem;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+table td,
+table th {
+  padding: 0.5rem;
+  vertical-align: top;
+}
+.btn,
+button {
+  display: inline-block;
+  background: red;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  text-align: center;
+  border: none;
+}
+.btn-del {
+  background: #dc3545;
+}
+form {
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+}
+label {
+  display: block;
+  font-size: 18px;
+  margin-top: 15px;
+  line-height: 30px;
+}
+/* input {
+  display: block;
+  width: 100%;
+  height: 35px;
+  border: turquoise 2px dashed;
+  margin-bottom: 10px;
+  padding-left: 10px;
+} */
+
+input[type="search"] {
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  padding: 0.375rem 0.95rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 15rem;
+  margin-right: 0.5rem;
+}
+.search-bar {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 71%;
+  margin-bottom: 1%;
+}
+
+/* NEW CSS TODAY*/
+
+/* Small screens (mobile devices) */
+
+@media (max-width: 600px) {
+  .nav-bar {
+    background-color: #e2a261;
+    display: flex;
+    align-items: center;
+    color: white;
+    position: fixed;
+    width: 100%;
+  }
+  .nav-bar a {
+    color: white;
+    text-decoration: none;
+  }
+  .title {
+    font-size: 12px;
+  }
+  h1 {
+    margin-top: 30%;
+    font-size: 0.1rem;
+    margin-left: -150px;
+  }
+  h1 span{
+      text-align: left;
+  }
+
+  input[type="search"] {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.95rem;
+    font-size: 1rem;
+    line-height: 0.8;
+    width: 8.5rem;
+  }
+  .search-bar {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 65%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-left: 45px;
+  }
+  .btn, button{
+  display: inline-block;
+  background: red;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+  border: none;
+  line-height: 0.8;
+  padding: 10px;
+}
+table {
+  max-width: 100%;
+  width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-top: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  color: white;
+  font-weight: bold;
+  margin: 0 auto;
+}
+table thead th {
+  vertical-align: bottom;
+  color: red;
+  font-weight: bolder;
+}
+
+td,
+th {
+  padding: 0.3rem;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+table td,
+table th {
+  padding: 0.5rem;
+  vertical-align: top;
+}
+}
