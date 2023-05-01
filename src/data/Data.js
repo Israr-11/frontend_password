@@ -70,7 +70,7 @@ function Data() {
         <button to={{ pathname: '/data/create' }} className='btn'>+ Add Data</button>
         {/* <button onClick={() => setSearchTerm(searchTerm)} className='btn'>Search</button> */}
       </div>
-      <table style={{ "overflow-x": "auto" }}>
+      <table>
         <thead>
           <tr>
             <th>Organization</th>
@@ -99,7 +99,7 @@ function Data() {
                 </td>
                 <td style={{ margin: "0 auto" }}>
                   <Link to={`/data/${p._id}/edit`} style={{ color: "white" }}><i className="fa-solid fa-pen-to-square"></i></Link>
-                  <Link onClick={() => del(p._id)} style={{ color: "white", marginLeft: "15px" }} ><i class="fa-solid fa-trash-can"></i></Link>
+                  <Link onClick={() => del(p._id)} style={{ color: "white", marginLeft: "15px" }} ><i className="fa-solid fa-trash-can"></i></Link>
                 </td>
               </tr>
             )
