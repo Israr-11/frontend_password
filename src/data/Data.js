@@ -64,13 +64,13 @@ function Data() {
 
   return (
     <Wrapper>
-      <h1 style={{ color: "white",fontSize:"1.5rem" }}>Welcome, <span>{email}!</span></h1>
+      <h1 style={{ color: "white", fontSize: "1.5rem" }}>Welcome, <span>{email}!</span></h1>
       <div className='search-bar'>
         <input type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search' />
-        <button to={{ pathname: '/data/create' }} className='btn'>+ Add Data</button>
+        <Link to={{ pathname: '/data/create' }} className='btn'>+ Add Data</Link>
         {/* <button onClick={() => setSearchTerm(searchTerm)} className='btn'>Search</button> */}
       </div>
-      <table>
+      <table style={{ "overflow-x": "auto" }}>
         <thead>
           <tr>
             <th>Organization</th>
@@ -92,15 +92,20 @@ function Data() {
                 <td>{p.emailUsed}
                 </td>
 
-               <td>
-                <div onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? p.passwordUsed : "********"}
-                </div>
+                <td>
+                  <div onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? p.passwordUsed : "********"}
+                  </div>
                 </td>
                 <td style={{ margin: "0 auto" }}>
                   <Link to={`/data/${p._id}/edit`} style={{ color: "white" }}><i className="fa-solid fa-pen-to-square"></i></Link>
-                  <Link onClick={() => del(p._id)} style={{ color: "white", marginLeft: "15px" }} ><i className="fa-solid fa-trash-can"></i></Link>
-                </td>
+                  <Link onClick={() => {
+                    if (window.confirm("Are you sure you want to delete this item?")) {
+                      del(p._id);
+                    }
+                  }} style={{ color: "white", marginLeft: "15px" }}>
+                    <i className="fa-solid fa-trash-can"></i>
+                  </Link>                </td>
               </tr>
             )
           })}
@@ -115,8 +120,13 @@ function Data() {
                 </td>
                 <td style={{ margin: "0 auto" }}>
                   <Link to={`/data/${p._id}/edit`} style={{ color: "white" }}><i className="fa-solid fa-pen-to-square"></i></Link>
-                  <Link onClick={() => del(p._id)} style={{ color: "white", marginLeft: "15px" }} ><i className="fa-solid fa-trash-can"></i></Link>
-                </td>
+                  <Link onClick={() => {
+                    if (window.confirm("Are you sure you want to delete this item?")) {
+                      del(p._id);
+                    }
+                  }} style={{ color: "white", marginLeft: "15px" }}>
+                    <i className="fa-solid fa-trash-can"></i>
+                  </Link>                </td>
               </tr>
             )
           })}

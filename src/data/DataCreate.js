@@ -47,7 +47,7 @@ function DataCreate() {
                     onChange={e => setpasswordUsed(e.target.value)}
                     required
                 />
-                <button type="submit">Add Data</button>
+                <button type="submit" style={{marginTop:"10px"}}>Add Data</button>
             </form>
     )
 }

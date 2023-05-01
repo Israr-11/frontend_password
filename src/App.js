@@ -9,8 +9,8 @@ import Cookies from 'universal-cookie';
 
 
 function App() {
-  const cookies = new Cookies();
-  const token = cookies.get('TOKEN');
+const cookies = new Cookies();
+const token = cookies.get('TOKEN');
 
 
   return (
@@ -18,9 +18,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/data"  element={token ? <Data/> : <Navigate to="/"  />}/>
-        <Route path="/data/create" element={token ? <DataCreate/>:<Navigate to="/"/>} />
-        <Route path="/data/:id/edit" element={token ? <DataEdit />:<Navigate to="/"/>} />
+        <Route path="/data" element={token ? <Data /> : <Navigate to="/" />} />
+        <Route path="/data/create" element={token ? <DataCreate /> : <Navigate to="/" />} />
+        <Route path="/data/:id/edit" element={token ? <DataEdit /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );

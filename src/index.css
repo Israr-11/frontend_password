@@ -158,12 +158,10 @@ input[type="search"] {
   }
   h1 {
     margin-top: 30%;
-    font-size: 0.1rem;
-    margin-left: -150px;
+    font-size: 0.5rem;
+    margin-left: 10px;
   }
-  h1 span{
-      text-align: left;
-  }
+ 
 
   input[type="search"] {
     border-radius: 0.25rem;
@@ -179,7 +177,7 @@ input[type="search"] {
     margin-left: 65%;
     margin: 0 auto;
     margin-bottom: 20px;
-    margin-left: 45px;
+    margin-left: 120px;
   }
   .btn, button{
   display: inline-block;
@@ -220,5 +218,8 @@ table td,
 table th {
   padding: 0.5rem;
   vertical-align: top;
+}
+.Edit-form{
+  margin-top: 78px;
 }
 }

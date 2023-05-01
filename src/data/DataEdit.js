@@ -49,7 +49,7 @@ function DataEdit() {
 
     return (
         <Wrapper>
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className='Edit-form'>
                 <label>Organization</label>
                 <input type="text" name="organizationName"
                     defaultValue={organizationName}
@@ -65,7 +65,7 @@ function DataEdit() {
                     defaultValue={passwordUsed}
                     onChange={e => setpasswordUsed(e.target.value)}
                 />
-                <button type="submit">Save</button>
+                <button type="submit" style={{marginTop:"10px"}}>Save</button>
             </form>
         </Wrapper>
     )
