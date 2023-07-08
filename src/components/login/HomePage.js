@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 import Cookies from 'universal-cookie';
 import "./login.css"
 
@@ -32,6 +33,17 @@ function HomePage() {
       setError("Incorrect email or password");
     }
   };
+
+  //Handle Success
+  const handleGoogleLoginSuccess=(response)=>{
+    console.log(response)
+  }
+
+  //Handle Failure
+  const handleGoogleLoginFailure=(error)=>{
+    console.log(error)
+  }
+
 
   return (
     <>
@@ -69,6 +81,19 @@ function HomePage() {
 
       {error && <div>{error}</div>}
       <button type="submit">Log in</button>
+      
+      {/* Google Sign-in */}
+
+      <GoogleLogin
+        clientId="905359159778-ugjr6n0rdpviu4d950u0i8kk2rnse9n9.apps.googleusercontent.com"
+        buttonText="Sign in with Google"
+        onSuccess={handleGoogleLoginSuccess}
+        onFailure={handleGoogleLoginFailure}
+        cookiePolicy={'single_host_origin'}
+        redirectUri="https://password-email-saver.netlify.app/data"
+      />
+
+
       <p>If you don't have an account, <Link to="/register">Create One</Link> instead.</p>
     </form>
     </>
