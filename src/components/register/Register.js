@@ -1,39 +1,41 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-import "./register.css"
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import "./register.css";
 
 function Register() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://password-protector.cyclic.app/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, password }),
-      });
+      const response = await fetch(
+        "https://password-protector.cyclic.app/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ firstName, lastName, email, password }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
-        navigate("/")
+        navigate("/");
         // handle successful registration
       } else {
         setError(data.message);
       }
     } catch (error) {
-      setError('Email already exists');
+      setError("Email already exists");
     }
   };
 
   return (
-
     <form onSubmit={handleSubmit} class="registration-form">
       <h1>Register Here 🔐</h1>
       <div class="form-group">
@@ -42,7 +44,7 @@ function Register() {
           type="text"
           id="firstName"
           value={firstName}
-          placeholder='Enter your First Name'
+          placeholder="Enter your First Name"
           onChange={(event) => setFirstName(event.target.value)}
           required
         />
@@ -53,7 +55,7 @@ function Register() {
           type="text"
           id="lastName"
           value={lastName}
-          placeholder='Enter your Last Name'
+          placeholder="Enter your Last Name"
           onChange={(event) => setLastName(event.target.value)}
           required
         />
@@ -64,7 +66,7 @@ function Register() {
           type="email"
           id="email"
           value={email}
-          placeholder='Enter a valid email'
+          placeholder="Enter a valid email"
           onChange={(event) => setEmail(event.target.value)}
           required
         />
@@ -93,9 +95,10 @@ function Register() {
       </div>
       {error && <div class="error">{error}</div>}
       <button type="submit">Register</button>
-      <p>Wanna go to, <Link to="/">Login Page</Link> instead.</p>
+      <p>
+        Wanna go to, <Link to="/">Login Page</Link> instead.
+      </p>
     </form>
-
   );
 }
 
