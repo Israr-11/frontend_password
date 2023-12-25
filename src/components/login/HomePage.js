@@ -12,31 +12,38 @@ function HomePage() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await fetch(
-  //       "https://password-protector.cyclic.app/login",
-  //       {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify({ email, password }),
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       cookies.set("TOKEN", data.token, { path: "/" });
-  //       console.log("Navigating to /data");
-  //       console.log(cookies.get("TOKEN"))
-  //       navigate("/data", { state: { token: data.token } });
-  //     } else {
-  //       const data = await response.json();
-  //       setError(data.message);
-  //     }
-  //   } catch (error) {
-  //     setError("Incorrect email or password");
-  //   }
-  // };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(
+        "https://password-protector.cyclic.app/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+      const data = await response.json();
+      console.log(data)
+      if (response.ok) {
+        const { token } = data.user;
+        
+        // Use the Promise returned by cookies.set to wait for it to complete
+        await new Promise((resolve) => {
+          cookies.set("TOKEN", data.user.token, { path: "/" });
+          resolve();
+        });
+        
+        console.log("Navigating to /data");
+        navigate("/data", { state: { token } });
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError("Incorrect email or password");
+    }
+  };
+  
 
   // //Handle Success
   // const handleGoogleLoginSuccess = (response) => {
@@ -49,33 +56,6 @@ function HomePage() {
   // };
 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch("https://password-protector.cyclic.app/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        const { token } = data;
-        cookies.set("TOKEN", token, { path: "/" });
-        navigate("/data", { state: { token } });
-        window.location.reload(true);
-
-      } else {
-        setError(data.message);
-      }
-    } catch (error) {
-      setError("Incorrect email or password");
-    }
-  };
-
-  
   return (
     <>
       <form onSubmit={handleSubmit}>

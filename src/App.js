@@ -6,6 +6,8 @@ import DataEdit from "./data/DataEdit";
 import HomePage from "./components/login/HomePage";
 import Register from "./components/register/Register";
 import Cookies from "universal-cookie";
+import AuthMessage from './components/authMessage/AuthMessage'; // Import the AuthMessage component
+
 
 function App() {
   const cookies = new Cookies();
@@ -13,10 +15,10 @@ function App() {
 
   return (
     <div>
-      <Routes>
+      <Routes basename="./data">
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/data" element={token ? <Data /> : <Navigate to="/" />} />
+        <Route path="/data" element={token ? <Data /> : <AuthMessage/>} />
         <Route
           path="/data/create"
           element={token ? <DataCreate /> : <Navigate to="/" />}
