@@ -14,7 +14,7 @@ const AuthMessage = () => {
         first to continue.
         <br/>
         <br/>
-        If you entered correct credentials and are redirected here then{" "}
+        NOTE: If you entered correct credentials and are redirected here then click{" "}
             <span
               style={{ fontWeight: "bold", cursor: "pointer", color: "blue", textDecoration: "underline" }}
               onClick={() => window.location.reload()}
