@@ -8,10 +8,12 @@ function Data() {
   const cookies = new Cookies();
   const token = cookies.get("TOKEN");
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [entry, setEntry] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [clickedPasswordId, setClickedPasswordId] = useState(null); // Track the ID of the clicked password
+  const [copiedPasswordId, setCopiedPasswordId] = useState(null); // Track the ID of the copied password
+  const [copiedMessageVisible, setCopiedMessageVisible] = useState(false); // Track the visibility of copied message
 
   // useEffect hook for fetching data from the API
   useEffect(() => {
@@ -43,6 +45,17 @@ function Data() {
 
     setEntry(entry.filter((p) => p._id !== id));
     setSearchResults(searchResults.filter((p) => p._id !== id));
+  };
+
+  // Function to copy password to clipboard and display it on click
+  const copyPassword = (password, id) => {
+    navigator.clipboard.writeText(password);
+    setCopiedPasswordId(id); // Set the ID of the copied password
+    setCopiedMessageVisible(true); // Show "Copied" message
+    setTimeout(() => {
+      setCopiedPasswordId(null); // Reset copied password ID after 3 seconds
+      setCopiedMessageVisible(false); // Hide "Copied" message after 3 seconds
+    }, 3000);
   };
 
   useEffect(() => {
@@ -78,9 +91,9 @@ function Data() {
         <Link to={{ pathname: "/data/create" }} className="btn">
           + Add Data
         </Link>
-        {/* <button onClick={() => setSearchTerm(searchTerm)} className='btn'>Search</button> */}
       </div>
-      <table style={{ "overflow-x": "auto" }}>
+      {copiedMessageVisible && <div style={{ color: "green" }}>Copied</div>}
+      <table style={{ overflowX: "auto" }}>
         <thead>
           <tr>
             <th>Organization</th>
@@ -121,10 +134,26 @@ function Data() {
                   <tr key={p._id}>
                     <td>{p.organizationName}</td>
                     <td>{p.emailUsed}</td>
-
                     <td>
-                      <div onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? p.passwordUsed : "********"}
+                      <div
+                        onClick={() =>
+                          setClickedPasswordId(prevState =>
+                            prevState === p._id ? null : p._id
+                          )
+                        }
+                      >
+                        {clickedPasswordId === p._id ? p.passwordUsed : "********"}
+                        {copiedPasswordId === p._id && (
+                          <span style={{ marginLeft: "20px", color: "green" }}>
+                            (Copied)
+                          </span>
+                        )}
+                        <span style={{ marginLeft: "40px", cursor: "pointer" }}>
+                          <i
+                            className="fa-solid fa-copy"
+                            onClick={() => copyPassword(p.passwordUsed, p._id)}
+                          ></i>
+                        </span>
                       </div>
                     </td>
                     <td style={{ margin: "0 auto" }}>
@@ -160,8 +189,22 @@ function Data() {
                   <td>{p.organizationName}</td>
                   <td>{p.emailUsed}</td>
                   <td>
-                    <div onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? p.passwordUsed : "********"}
+                    <div
+                      onClick={() =>
+                        setClickedPasswordId(prevState =>
+                          prevState === p._id ? null : p._id
+                        )
+                      }
+                    >
+                      {clickedPasswordId === p._id ? p.passwordUsed : "********"}
+                      {copiedPasswordId === p._id && (
+                        <span style={{ marginLeft: "20px", color: "green" }}>
+                          (Copied)
+                        </span>
+                      )}
+                      <span style={{ marginLeft: "40px", cursor: "pointer" }}>
+                        <i className="fa-solid fa-copy" onClick={() => copyPassword( p.passwordUsed,p._id)}></i>
+                      </span>
                     </div>
                   </td>
                   <td style={{ margin: "0 auto" }}>
